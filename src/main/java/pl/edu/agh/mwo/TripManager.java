@@ -25,4 +25,22 @@ public class TripManager {
 		tripList.remove(name);
 	}
 	
+	public Trip findTrip(String keyword) {
+		for (Trip trip : tripList.values()){
+			if (trip.getName().contains(keyword)) {
+				return trip;
+			}
+			if (trip.getDescription().contains(keyword)) {
+				return trip;
+			}
+			for (Photo photo :trip.getPhotos()) {
+				if (photo.getComment().contains(keyword)) {
+					return trip;
+				}
+			}
+		}
+		return null;
+		
+	}
+	
 }

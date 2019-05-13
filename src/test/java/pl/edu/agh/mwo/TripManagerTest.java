@@ -37,6 +37,35 @@ public class TripManagerTest {
 		assertEquals(1, tripManager.getTrips().size());
 		tripManager.remove(trip.getName());
 		assertEquals(0, tripManager.getTrips().size());
-		fail("chcemy zespuc");
+		//fail("chcemy zespuc");
 		}
+	
+	@Test
+	public void testFindTripEmptyString() throws Exception {
+		tripManager.add(trip);
+		
+		assertEquals(trip,tripManager.findTrip(""));
+	}
+	
+	@Test
+	public void testFindTripKeyName() throws Exception {
+		tripManager.add(trip);
+		
+		assertEquals(trip,tripManager.findTrip("nazwa"));
+	}
+	
+	@Test
+	public void testFindTripKeyDescription() throws Exception {
+		tripManager.add(trip);
+		assertEquals(trip,tripManager.findTrip("opis"));
+	}
+	
+	@Test
+	public void testFindTripKeyPhotoComment() throws Exception {
+		Photo photo = new Photo("comment");
+		trip.addPhoto(photo);
+		tripManager.add(trip);
+		assertEquals(trip,tripManager.findTrip("comment"));
+		
+	}
 }
